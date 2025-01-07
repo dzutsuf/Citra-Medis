@@ -25,7 +25,7 @@ const ImageUploader = ({ setResult }) => {
         const formData = new FormData();
         formData.append("image", image);
         const req = await fetch(
-          "https://1e4d-35-194-205-178.ngrok-free.app/detect",
+          "https://universe.roboflow.com/burnproject-53lip/first_aid_kit-5jvmt",
           {
             method: "POST",
             body: formData,
