@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import backgroundImage from "../assets/background.png";
 
-const ImageUploader = () => {
+// eslint-disable-next-line react/prop-types
+const ImageUploader = ({ setResult }) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -18,8 +19,31 @@ const ImageUploader = () => {
     }
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (image) {
+      try {
+        const formData = new FormData();
+        formData.append("image", image);
+        const req = await fetch(
+          "https://c8dd-34-91-250-29.ngrok-free.app/detect",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!req.ok) throw new Error(req.statusText);
+
+        const res = await req.json();
+
+        console.log(res);
+        if (res.status !== "Success Upload") throw new Error(res.status);
+
+        setResult(res);
+      } catch (e) {
+        console.error(e);
+      }
+
       Swal.fire({
         icon: "success",
         title: "Berhasil",

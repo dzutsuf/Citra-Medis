@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import { useRef, useState } from "react";
 import "./index.css";
 import ImageUploader from "./section/ImageUploader.jsx";
 import LandingPage from "./section/LandingPage.jsx";
+import ResultPage from "./section/ResultPage.jsx";
 
 function App() {
   const imageUploaderRef = useRef(null);
@@ -10,11 +11,17 @@ function App() {
     imageUploaderRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const [result, setResult] = useState(null);
+
   return (
     <div>
       <LandingPage scrollToImageUploader={scrollToImageUploader} />
       <div ref={imageUploaderRef}>
-        <ImageUploader />
+        {!result ? (
+          <ImageUploader setResult={setResult} />
+        ) : (
+          <ResultPage setResult={setResult} />
+        )}
       </div>
     </div>
   );
