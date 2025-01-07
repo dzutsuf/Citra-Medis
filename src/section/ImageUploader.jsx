@@ -25,7 +25,7 @@ const ImageUploader = ({ setResult }) => {
         const formData = new FormData();
         formData.append("image", image);
         const req = await fetch(
-          "https://c8dd-34-91-250-29.ngrok-free.app/detect",
+          "https://1e4d-35-194-205-178.ngrok-free.app/detect",
           {
             method: "POST",
             body: formData,
@@ -39,7 +39,7 @@ const ImageUploader = ({ setResult }) => {
         console.log(res);
         if (res.status !== "Success Upload") throw new Error(res.status);
 
-        setResult(res);
+        setResult(res.detected_labels);
       } catch (e) {
         console.error(e);
       }

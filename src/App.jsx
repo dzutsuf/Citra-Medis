@@ -20,7 +20,7 @@ function App() {
         {!result ? (
           <ImageUploader setResult={setResult} />
         ) : (
-          <ResultPage setResult={setResult} />
+          <ResultPage setResult={setResult} reqLabels={result} />
         )}
       </div>
     </div>
