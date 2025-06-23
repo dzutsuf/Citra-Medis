@@ -25,7 +25,8 @@ const ImageUploader = ({ setResult }) => {
         const formData = new FormData();
         formData.append("image", image);
         const req = await fetch(
-          "https://1319-35-196-142-25.ngrok-free.app/detect",
+          //// link API Example : https://94db-34-86-3-28.ngrok-free.app/detect
+          "((  API link from colab ))/detect",
           {
             method: "POST",
             body: formData,
